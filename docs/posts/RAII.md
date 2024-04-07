@@ -1,8 +1,8 @@
 ---
 category:
-  - C++ STL
+  - Cpp STL
 tag:
-  - C++
+  - Cpp
 ---
 
 # 对象生存期与资源管理

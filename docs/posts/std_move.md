@@ -1,8 +1,8 @@
 ---
 category:
-  - C++ STL
+  - Cpp STL
 tag:
-  - C++
+  - Cpp
 ---
 
 # std::move

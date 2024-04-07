@@ -20,16 +20,23 @@ export default defineUserConfig({
         link: '/article/',
       },
       {
+        text: 'Category',
+        link: '/category/',
+      },
+      {
+        text: 'Tag',
+        link: '/tag/',
+      },
+      {
         text: 'Intro',
         children: [
-          { text: 'Github', link: 'https://www.google.com' },
-          { text: 'BiliBili', link: 'https://www.google.com' },
-          { text: 'Gmail', link: 'https://www.google.com' }
+          { text: 'Github', link: 'https://github.com/Z4R1TSU' },
+          { text: 'BiliBili', link: 'https://space.bilibili.com/527080131' },
+          { text: 'Gmail', link: 'https://www.zaritsu030907@gmail.com' }
         ]
       }
     ],
   }),
-
   plugins: [
     blogPlugin({
       // Only files under posts are articles
@@ -55,6 +62,37 @@ export default defineUserConfig({
         !frontmatter.home &&
         frontmatter.excerpt !== false &&
         typeof frontmatter.excerpt !== 'string',
+
+      category: [
+        {
+          key: 'category',
+          getter: (page) => page.frontmatter.category || [],
+          layout: 'Category',
+          itemLayout: 'Category',
+          frontmatter: () => ({
+            title: 'Categories',
+            sidebar: false,
+          }),
+          itemFrontmatter: (name) => ({
+            title: `Category ${name}`,
+            sidebar: false,
+          }),
+        },
+        {
+          key: 'tag',
+          getter: (page) => page.frontmatter.tag || [],
+          layout: 'Tag',
+          itemLayout: 'Tag',
+          frontmatter: () => ({
+            title: 'Tags',
+            sidebar: false,
+          }),
+          itemFrontmatter: (name) => ({
+            title: `Tag ${name}`,
+            sidebar: false,
+          }),
+        },
+      ],
 
       type: [
         {

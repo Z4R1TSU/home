@@ -6,7 +6,10 @@ import clientConfig4 from 'E:/web/vuepress-starter/node_modules/@vuepress/plugin
 import clientConfig5 from 'E:/web/vuepress-starter/node_modules/@vuepress/plugin-nprogress/lib/client/config.js'
 import clientConfig6 from 'E:/web/vuepress-starter/node_modules/@vuepress/plugin-theme-data/lib/client/config.js'
 import clientConfig7 from 'E:/web/vuepress-starter/node_modules/@vuepress/theme-default/lib/client/config.js'
-import clientConfig8 from 'E:/web/vuepress-starter/docs/.vuepress/client.js'
+import clientConfig8 from 'E:/web/vuepress-starter/docs/.vuepress/.temp/sass-palette/load-hope.js'
+import clientConfig9 from 'E:/web/vuepress-starter/docs/.vuepress/.temp/md-enhance/config.js'
+import clientConfig10 from 'E:/web/vuepress-starter/node_modules/@vuepress/plugin-docsearch/lib/client/config.js'
+import clientConfig11 from 'E:/web/vuepress-starter/docs/.vuepress/client.js'
 
 export const clientConfigs = [
   clientConfig0,
@@ -18,4 +21,7 @@ export const clientConfigs = [
   clientConfig6,
   clientConfig7,
   clientConfig8,
+  clientConfig9,
+  clientConfig10,
+  clientConfig11,
 ]

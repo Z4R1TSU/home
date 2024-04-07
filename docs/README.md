@@ -16,6 +16,5 @@ features:
 footer: Produce by Zari Tsu | Powered by VuePress
 ---
 
-    未完待续
 
 [default-theme-home]: https://vuejs.press/reference/default-theme/frontmatter.html#home-page

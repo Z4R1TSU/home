@@ -2,6 +2,9 @@ import { blogPlugin } from '@vuepress/plugin-blog'
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { viteBundler } from '@vuepress/bundler-vite'
+import { docsearchPlugin } from '@vuepress/plugin-docsearch'
+import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
+
 
 export default defineUserConfig({
   lang: 'en-US',
@@ -38,6 +41,20 @@ export default defineUserConfig({
     ],
   }),
   plugins: [
+    mdEnhancePlugin({
+      // 启用代码块标签页
+      codetabs: true,
+      // 启用自定义容器
+      container: true,
+    }),
+    docsearchPlugin({
+      locales: {
+        '/': {
+          placeholder: 'Search for article',
+          // 放置其他你需要的选项
+        },
+      }
+    }),
     blogPlugin({
       // Only files under posts are articles
       filter: ({ filePathRelative }) =>

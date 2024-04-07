@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.9" />
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+      html.dark {
+        --c-bg: #22272e;
+      }
+      html,
+      body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme')
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+        document.documentElement.classList.toggle('dark', true)
+      }
+    </script>
+    <title>CS144  lab 0 | Zari Tsu</title><meta name="description" content="一个普通的CSer">
+    <link rel="preload" href="/assets/style-CjAkhjTL.css" as="style"><link rel="stylesheet" href="/assets/style-CjAkhjTL.css">
+    <link rel="modulepreload" href="/assets/app-DFm5EVWx.js"><link rel="modulepreload" href="/assets/cs144_lab0.html-CQurHDuV.js">
+    <link rel="prefetch" href="/assets/get-started.html-CBNKqAfl.js" as="script"><link rel="prefetch" href="/assets/index.html-Cw2bOZ2M.js" as="script"><link rel="prefetch" href="/assets/cs144_lab2.html-XMaTCPAQ.js" as="script"><link rel="prefetch" href="/assets/RAII.html-BIXJlxuc.js" as="script"><link rel="prefetch" href="/assets/std_move.html-BV58ljKT.js" as="script"><link rel="prefetch" href="/assets/virtual.html-BlcruAsk.js" as="script"><link rel="prefetch" href="/assets/404.html-DAAIZQd-.js" as="script"><link rel="prefetch" href="/assets/index.html-KBbWEzaW.js" as="script"><link rel="prefetch" href="/assets/index.html-C5nh83u4.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme-container"><!--[--><header class="navbar"><div class="toggle-sidebar-button" title="toggle sidebar" aria-expanded="false" role="button" tabindex="0"><div class="icon" aria-hidden="true"><span></span><span></span><span></span></div></div><span><a class="route-link" href="/"><img class="logo" src="https://vuejs.press/images/hero.png" alt="Zari Tsu"><span class="site-name can-hide" aria-hidden="true">Zari Tsu</span></a></span><div class="navbar-items-wrapper" style=""><!--[--><!--]--><nav class="navbar-items can-hide" aria-label="site navigation"><!--[--><div class="navbar-item"><a class="route-link" href="/" aria-label="Home"><!--[--><!--[--><!--]--> Home <!--[--><!--]--><!--]--></a></div><div class="navbar-item"><a class="route-link" href="/article/" aria-label="Article"><!--[--><!--[--><!--]--> Article <!--[--><!--]--><!--]--></a></div><div class="navbar-item"><div class="navbar-dropdown-wrapper"><button class="navbar-dropdown-title" type="button" aria-label="Intro"><span class="title">Intro</span><span class="arrow down"></span></button><button class="navbar-dropdown-title-mobile" type="button" aria-label="Intro"><span class="title">Intro</span><span class="right arrow"></span></button><ul style="display:none;" class="navbar-dropdown"><!--[--><li class="navbar-dropdown-item"><a class="external-link" href="https://www.google.com" rel="noopener noreferrer" target="_blank" aria-label="Github"><!--[--><!--[--><!--]--> Github <span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!--[--><!--]--><!--]--></a></li><li class="navbar-dropdown-item"><a class="external-link" href="https://www.google.com" rel="noopener noreferrer" target="_blank" aria-label="BiliBili"><!--[--><!--[--><!--]--> BiliBili <span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!--[--><!--]--><!--]--></a></li><li class="navbar-dropdown-item"><a class="external-link" href="https://www.google.com" rel="noopener noreferrer" target="_blank" aria-label="Gmail"><!--[--><!--[--><!--]--> Gmail <span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!--[--><!--]--><!--]--></a></li><!--]--></ul></div></div><!--]--></nav><!--[--><!--]--><button class="toggle-color-mode-button" title="toggle color mode"><svg style="" class="icon" focusable="false" viewBox="0 0 32 32"><path d="M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6z" fill="currentColor"></path><path d="M5.394 6.813l1.414-1.415l3.506 3.506L8.9 10.318z" fill="currentColor"></path><path d="M2 15.005h5v2H2z" fill="currentColor"></path><path d="M5.394 25.197L8.9 21.691l1.414 1.415l-3.506 3.505z" fill="currentColor"></path><path d="M15 25.005h2v5h-2z" fill="currentColor"></path><path d="M21.687 23.106l1.414-1.415l3.506 3.506l-1.414 1.414z" fill="currentColor"></path><path d="M25 15.005h5v2h-5z" fill="currentColor"></path><path d="M21.687 8.904l3.506-3.506l1.414 1.415l-3.506 3.505z" fill="currentColor"></path><path d="M15 2.005h2v5h-2z" fill="currentColor"></path></svg><svg style="display:none;" class="icon" focusable="false" viewBox="0 0 32 32"><path d="M13.502 5.414a15.075 15.075 0 0 0 11.594 18.194a11.113 11.113 0 0 1-7.975 3.39c-.138 0-.278.005-.418 0a11.094 11.094 0 0 1-3.2-21.584M14.98 3a1.002 1.002 0 0 0-.175.016a13.096 13.096 0 0 0 1.825 25.981c.164.006.328 0 .49 0a13.072 13.072 0 0 0 10.703-5.555a1.01 1.01 0 0 0-.783-1.565A13.08 13.08 0 0 1 15.89 4.38A1.015 1.015 0 0 0 14.98 3z" fill="currentColor"></path></svg></button><!----></div></header><!--]--><div class="sidebar-mask"></div><!--[--><aside class="sidebar"><nav class="navbar-items" aria-label="site navigation"><!--[--><div class="navbar-item"><a class="route-link" href="/" aria-label="Home"><!--[--><!--[--><!--]--> Home <!--[--><!--]--><!--]--></a></div><div class="navbar-item"><a class="route-link" href="/article/" aria-label="Article"><!--[--><!--[--><!--]--> Article <!--[--><!--]--><!--]--></a></div><div class="navbar-item"><div class="navbar-dropdown-wrapper"><button class="navbar-dropdown-title" type="button" aria-label="Intro"><span class="title">Intro</span><span class="arrow down"></span></button><button class="navbar-dropdown-title-mobile" type="button" aria-label="Intro"><span class="title">Intro</span><span class="right arrow"></span></button><ul style="display:none;" class="navbar-dropdown"><!--[--><li class="navbar-dropdown-item"><a class="external-link" href="https://www.google.com" rel="noopener noreferrer" target="_blank" aria-label="Github"><!--[--><!--[--><!--]--> Github <span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!--[--><!--]--><!--]--></a></li><li class="navbar-dropdown-item"><a class="external-link" href="https://www.google.com" rel="noopener noreferrer" target="_blank" aria-label="BiliBili"><!--[--><!--[--><!--]--> BiliBili <span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!--[--><!--]--><!--]--></a></li><li class="navbar-dropdown-item"><a class="external-link" href="https://www.google.com" rel="noopener noreferrer" target="_blank" aria-label="Gmail"><!--[--><!--[--><!--]--> Gmail <span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!--[--><!--]--><!--]--></a></li><!--]--></ul></div></div><!--]--></nav><!--[--><!--]--><ul class="sidebar-items"><!--[--><li><p tabindex="0" class="sidebar-item sidebar-heading">CS144  lab 0 <!----></p><ul style="" class="sidebar-item-children"><!--[--><li><a class="route-link sidebar-item" href="#webget" aria-label="webget"><!--[--><!--[--><!--]--> webget <!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link sidebar-item" href="#byte-stream" aria-label="byte stream"><!--[--><!--[--><!--]--> byte stream <!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><!--]--></ul><!--[--><!--]--></aside><!--]--><!--[--><main class="page"><!--[--><!--]--><div class="theme-default-content"><!--[--><!--]--><div><h1 id="cs144-lab-0" tabindex="-1"><a class="header-anchor" href="#cs144-lab-0"><span>CS144 lab 0</span></a></h1><p><a href="https://www.bilibili.com/video/BV1pM4m197ma/?spm_id_from=333.999.0.0&amp;vd_source=f53099189814dd887f4ab25638e07406" target="_blank" rel="noopener noreferrer">视频讲解<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></p><h3 id="webget" tabindex="-1"><a class="header-anchor" href="#webget"><span>webget</span></a></h3><ul><li>我的解法</li></ul><div class="language-cpp line-numbers-mode" data-ext="cpp" data-title="cpp"><pre class="language-cpp"><code><span class="token keyword">void</span> <span class="token function">get_URL</span><span class="token punctuation">(</span> <span class="token keyword">const</span> string<span class="token operator">&amp;</span> host<span class="token punctuation">,</span> <span class="token keyword">const</span> string<span class="token operator">&amp;</span> path <span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  TCPSocket sock<span class="token punctuation">;</span>
+  sock<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token function">Address</span><span class="token punctuation">(</span>host<span class="token punctuation">,</span> <span class="token string">&quot;http&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  sock<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">&quot;GET &quot;</span> <span class="token operator">+</span> path <span class="token operator">+</span> <span class="token string">&quot; HTTP/1.1\r\nHost: &quot;</span> <span class="token operator">+</span> host <span class="token operator">+</span> <span class="token string">&quot;\r\nConnection: close\r\n\r\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>sock<span class="token punctuation">.</span><span class="token function">eof</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    string recvd<span class="token punctuation">;</span>
+    sock<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>recvd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> recvd<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  sock<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  sock<span class="token punctuation">.</span><span class="token function">shutdown</span><span class="token punctuation">(</span>SHUT_RDWR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>(或者说可能这个长得好看点) <img src="/assets/cs144_lab0_webget-DnFnOF6F.png" alt="webget"></p><ul><li>运行结果</li></ul><div class="language-bash line-numbers-mode" data-ext="sh" data-title="sh"><pre class="language-bash"><code>╰─❯ <span class="token builtin class-name">cd</span> minnow/build/
+
+…3  root@LAPTOP-2CKOL1GC  <span class="token number">15</span>:38:26 
+╰─❯ <span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> check_webget
+<span class="token punctuation">[</span> <span class="token number">35</span>%<span class="token punctuation">]</span> Built target util_debug
+<span class="token punctuation">[</span> <span class="token number">64</span>%<span class="token punctuation">]</span> Built target minnow_debug
+<span class="token punctuation">[</span> <span class="token number">71</span>%<span class="token punctuation">]</span> Built target minnow_testing_debug
+<span class="token punctuation">[</span> <span class="token number">78</span>%<span class="token punctuation">]</span> Built target stream_copy
+<span class="token punctuation">[</span> <span class="token number">92</span>%<span class="token punctuation">]</span> Built target webget
+<span class="token punctuation">[</span><span class="token number">100</span>%<span class="token punctuation">]</span> Built target tcp_native
+Test project /root/minnow/build
+    Start <span class="token number">1</span>: compile with bug-checkers
+<span class="token number">1</span>/2 Test <span class="token comment">#1: compile with bug-checkers ........   Passed    3.69 sec</span>
+    Start <span class="token number">2</span>: t_webget
+<span class="token number">2</span>/2 Test <span class="token comment">#2: t_webget .........................   Passed    2.32 sec</span>
+
+<span class="token number">100</span>% tests passed, <span class="token number">0</span> tests failed out of <span class="token number">2</span>
+
+Total Test <span class="token function">time</span> <span class="token punctuation">(</span>real<span class="token punctuation">)</span> <span class="token operator">=</span>   <span class="token number">6.01</span> sec
+Built target check_webget
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="byte-stream" tabindex="-1"><a class="header-anchor" href="#byte-stream"><span>byte stream</span></a></h3><ul><li>我的解法</li></ul><div class="language-cpp line-numbers-mode" data-ext="cpp" data-title="cpp"><pre class="language-cpp"><code><span class="token comment">// byte_stream.hh</span>
+
+<span class="token keyword">protected</span><span class="token operator">:</span>
+  <span class="token comment">// Please add any additional state to the ByteStream here, and not to the Writer and Reader interfaces.</span>
+  <span class="token keyword">uint64_t</span> capacity_<span class="token punctuation">;</span>
+  <span class="token keyword">bool</span> error_ <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  std<span class="token double-colon punctuation">::</span>string buffer <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">bool</span> is_close_ <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">uint64_t</span> pushcnt_ <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">uint64_t</span> popcnt_ <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-cpp line-numbers-mode" data-ext="cpp" data-title="cpp"><pre class="language-cpp"><code><span class="token comment">// byte_stream.cc</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&quot;byte_stream.hh&quot;</span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token class-name">ByteStream</span><span class="token double-colon punctuation">::</span><span class="token function">ByteStream</span><span class="token punctuation">(</span> <span class="token keyword">uint64_t</span> capacity <span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">capacity_</span><span class="token punctuation">(</span> capacity <span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">bool</span> <span class="token class-name">Writer</span><span class="token double-colon punctuation">::</span><span class="token function">is_closed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Your code here.</span>
+  <span class="token keyword">return</span> is_close_<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token class-name">Writer</span><span class="token double-colon punctuation">::</span><span class="token function">push</span><span class="token punctuation">(</span> string data <span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Your code here.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>is_close_<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">uint64_t</span> push_size <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">min</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">available_capacity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">// append buffer with data&#39;s form part</span>
+  buffer<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> push_size<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  pushcnt_ <span class="token operator">+=</span> push_size<span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token class-name">Writer</span><span class="token double-colon punctuation">::</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Your code here.</span>
+  is_close_ <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">uint64_t</span> <span class="token class-name">Writer</span><span class="token double-colon punctuation">::</span><span class="token function">available_capacity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Your code here.</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>capacity_ <span class="token operator">-</span> buffer<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">uint64_t</span> <span class="token class-name">Writer</span><span class="token double-colon punctuation">::</span><span class="token function">bytes_pushed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Your code here.</span>
+  <span class="token keyword">return</span> pushcnt_<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">bool</span> <span class="token class-name">Reader</span><span class="token double-colon punctuation">::</span><span class="token function">is_finished</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Your code here.</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>is_close_ <span class="token operator">&amp;&amp;</span> pushcnt_ <span class="token operator">==</span> popcnt_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">uint64_t</span> <span class="token class-name">Reader</span><span class="token double-colon punctuation">::</span><span class="token function">bytes_popped</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Your code here.</span>
+  <span class="token keyword">return</span> popcnt_<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+string_view <span class="token class-name">Reader</span><span class="token double-colon punctuation">::</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Your code here.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>buffer<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> std<span class="token double-colon punctuation">::</span><span class="token function">string_view</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token class-name">Reader</span><span class="token double-colon punctuation">::</span><span class="token function">pop</span><span class="token punctuation">(</span> <span class="token keyword">uint64_t</span> len <span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Your code here.</span>
+  <span class="token keyword">uint64_t</span> pop_size <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">min</span><span class="token punctuation">(</span>len<span class="token punctuation">,</span> buffer<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// modify buffer to its last part (start at index pop_size)</span>
+  buffer <span class="token operator">=</span> buffer<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>pop_size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  popcnt_ <span class="token operator">+=</span> pop_size<span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">uint64_t</span> <span class="token class-name">Reader</span><span class="token double-colon punctuation">::</span><span class="token function">bytes_buffered</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">// Your code here.</span>
+  <span class="token keyword">return</span> buffer<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><img src="/assets/cs144_lab0_bs-DbfI03fI.png" alt="byte stream"></p><ul><li>运行结果</li></ul><div class="language-bash line-numbers-mode" data-ext="sh" data-title="sh"><pre class="language-bash"><code>╰─❯ <span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> check0
+<span class="token punctuation">[</span> <span class="token number">35</span>%<span class="token punctuation">]</span> Built target util_debug
+<span class="token punctuation">[</span> <span class="token number">64</span>%<span class="token punctuation">]</span> Built target minnow_debug
+<span class="token punctuation">[</span> <span class="token number">71</span>%<span class="token punctuation">]</span> Built target minnow_testing_debug
+<span class="token punctuation">[</span> <span class="token number">78</span>%<span class="token punctuation">]</span> Built target stream_copy
+<span class="token punctuation">[</span> <span class="token number">92</span>%<span class="token punctuation">]</span> Built target webget
+<span class="token punctuation">[</span><span class="token number">100</span>%<span class="token punctuation">]</span> Built target tcp_native
+Test project /root/minnow/build
+      Start  <span class="token number">1</span>: compile with bug-checkers
+ <span class="token number">1</span>/10 Test  <span class="token comment">#1: compile with bug-checkers ........   Passed    0.23 sec</span>
+      Start  <span class="token number">2</span>: t_webget
+ <span class="token number">2</span>/10 Test  <span class="token comment">#2: t_webget .........................   Passed    1.09 sec</span>
+      Start  <span class="token number">3</span>: byte_stream_basics
+ <span class="token number">3</span>/10 Test  <span class="token comment">#3: byte_stream_basics ...............   Passed    0.01 sec</span>
+      Start  <span class="token number">4</span>: byte_stream_capacity
+ <span class="token number">4</span>/10 Test  <span class="token comment">#4: byte_stream_capacity .............   Passed    0.01 sec</span>
+      Start  <span class="token number">5</span>: byte_stream_one_write
+ <span class="token number">5</span>/10 Test  <span class="token comment">#5: byte_stream_one_write ............   Passed    0.01 sec</span>
+      Start  <span class="token number">6</span>: byte_stream_two_writes
+ <span class="token number">6</span>/10 Test  <span class="token comment">#6: byte_stream_two_writes ...........   Passed    0.01 sec</span>
+      Start  <span class="token number">7</span>: byte_stream_many_writes
+ <span class="token number">7</span>/10 Test  <span class="token comment">#7: byte_stream_many_writes ..........   Passed    0.04 sec</span>
+      Start  <span class="token number">8</span>: byte_stream_stress_test
+ <span class="token number">8</span>/10 Test  <span class="token comment">#8: byte_stream_stress_test ..........   Passed    0.02 sec</span>
+      Start <span class="token number">37</span>: compile with optimization
+ <span class="token number">9</span>/10 Test <span class="token comment">#37: compile with optimization ........   Passed    0.09 sec</span>
+      Start <span class="token number">38</span>: byte_stream_speed_test
+             ByteStream throughput: <span class="token number">1.35</span> Gbit/s
+<span class="token number">10</span>/10 Test <span class="token comment">#38: byte_stream_speed_test ...........   Passed    0.13 sec</span>
+
+<span class="token number">100</span>% tests passed, <span class="token number">0</span> tests failed out of <span class="token number">10</span>
+
+Total Test <span class="token function">time</span> <span class="token punctuation">(</span>real<span class="token punctuation">)</span> <span class="token operator">=</span>   <span class="token number">1.64</span> sec
+Built target check0
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div><!--[--><!--]--></div><footer class="vp-page-meta"><!----><div class="vp-meta-item git-info"><div class="vp-meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="vp-meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: zaritsu030907@gmail.com">Zari_Tsu</span><!----><!--]--><!--]--></span></div></div></footer><!----><!--[--><!--]--></main><!--]--></div><!--[--><!----><!--]--><!--]--></div>
+    <script type="module" src="/assets/app-DFm5EVWx.js" defer></script>
+  </body>
+</html>

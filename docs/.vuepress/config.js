@@ -5,7 +5,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 
 export default defineUserConfig({
   lang: 'en-US',
-  base: '/',
+  base: '/home/',
 
   title: 'Zari Tsu',
   description: '一个普通的CSer',

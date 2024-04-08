@@ -1,1 +1,1 @@
-export const siteData = JSON.parse("{\"base\":\"/home/\",\"lang\":\"en-US\",\"title\":\"Zari Tsu\",\"description\":\"兰心幽谷，静芳天成\",\"head\":[],\"locales\":{}}")
+export const siteData = JSON.parse("{\"base\":\"/home/\",\"lang\":\"en-US\",\"title\":\"Zari Tsu\",\"description\":\"芝兰生于幽谷，不以无人而不芳\",\"head\":[],\"locales\":{}}")

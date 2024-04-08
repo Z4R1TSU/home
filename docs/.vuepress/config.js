@@ -11,7 +11,7 @@ export default defineUserConfig({
   base: '/home/',
 
   title: 'Zari Tsu',
-  description: '兰心幽谷，静芳天成',
+  description: '芝兰生于幽谷，不以无人而不芳',
 
   theme: defaultTheme({
     logo: '/images/logo.png',

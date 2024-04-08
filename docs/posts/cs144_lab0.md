@@ -5,7 +5,7 @@ tag:
   - Network
 ---
 
-# CS144  lab 0
+# Stanford CS144  lab 0
 
 [视频讲解](https://www.bilibili.com/video/BV1pM4m197ma/?spm_id_from=333.999.0.0&vd_source=f53099189814dd887f4ab25638e07406)
 

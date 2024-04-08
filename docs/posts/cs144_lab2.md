@@ -5,7 +5,7 @@ tag:
   - Network
 ---
 
-# CS144 lab 2
+# Stanford CS144 lab 2
 
 这个lab分为两个部分——wrap和unwrap，TCP receiver的实现  
 回顾lab0和lab1，它们其实都是一个造积木的过程，而到了lab2当中，当然wrap和unwrap也还是在造积木。但到了TCPreceiver则开始搭积木了，它将之前我们所创建的几个小Class，通过调用其中的几个API给组合在了一起
@@ -116,7 +116,13 @@ void TCPReceiver::receive( TCPSenderMessage message )
 
   uint64_t check_point = writer().bytes_pushed() + 1;
   uint64_t abs_seqno = message.seqno.unwrap(zero_point_.value(), check_point);
-  uint64_t stream_index = abs_seqno + static_cast<uint64_t>(message.SYN) - 1;
+  uint64_t stream_index;
+
+  if (message.SYN) {
+    stream_index = 0;
+  } else {
+    stream_index = abs_seqno - 1;
+  }
 
   reassembler_.insert(stream_index, std::move(message.payload),  message.FIN);
 }
@@ -134,10 +140,16 @@ TCPReceiverMessage TCPReceiver::send() const
     return res;
   }
 
-  res.ackno = Wrap32::wrap(writer().bytes_pushed() + static_cast<uint64_t>(writer().is_closed()) + 1, zero_point_.value());
+  if (writer().is_closed()) {
+    // ackno = S bit + payload + F bit
+    res.ackno = Wrap32::wrap(1 + writer().bytes_pushed() + 1, zero_point_.value());
+  } else {
+    res.ackno = Wrap32::wrap(writer().bytes_pushed() + 1, zero_point_.value());
+  }
 
   return res;
 }
+
 ```
 
 * 测试结果:  

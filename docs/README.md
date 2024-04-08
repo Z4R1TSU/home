@@ -11,7 +11,7 @@ features:
   - title: 一个普通的CSer
     details: Major in Computer Science
   - title: 22级在读大学生
-    details: 生于孝慈溪畔，水墨江南；负笈旅越求学，离家千里
+    details: 生于孝慈溪畔，水墨江南；负笈旅粤求学，离家千里
   - title: 内容创造者
     details: 在BiliBili发布系列学习视频
 

@@ -1,4 +1,4 @@
-<template><div><h1 id="cs144-lab-0" tabindex="-1"><a class="header-anchor" href="#cs144-lab-0"><span>CS144  lab 0</span></a></h1>
+<template><div><h1 id="stanford-cs144-lab-0" tabindex="-1"><a class="header-anchor" href="#stanford-cs144-lab-0"><span>Stanford CS144  lab 0</span></a></h1>
 <p><a href="https://www.bilibili.com/video/BV1pM4m197ma/?spm_id_from=333.999.0.0&amp;vd_source=f53099189814dd887f4ab25638e07406" target="_blank" rel="noopener noreferrer">视频讲解<ExternalLinkIcon/></a></p>
 <h3 id="webget" tabindex="-1"><a class="header-anchor" href="#webget"><span>webget</span></a></h3>
 <ul>

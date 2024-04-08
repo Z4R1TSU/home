@@ -16,7 +16,7 @@
 <li>stream index(Stream indices): 类型是uint64_t，其实就是我们之前reassembler里面的那个index</li>
 </ol>
 <p>(这个是CS144官方文档当中的解释)
-<img src="@source/public/images/cs144_lab2_3nums.png" alt="3 numbers"></p>
+<img src="@source/.vuepress/public/images/cs144_lab2_3nums.png" alt="3 numbers"></p>
 <ul>
 <li>转换</li>
 </ul>
@@ -28,7 +28,7 @@
 </blockquote>
 <p>自然而然想出的办法就是<strong>取模</strong>运算</p>
 <p>(这个图是官方文档给出的这三者之间的相互转换关系)
-<img src="@source/public/images/cs144_lab2_num_trans.png" alt="3 number transition"></p>
+<img src="@source/.vuepress/public/images/cs144_lab2_num_trans.png" alt="3 number transition"></p>
 <ul>
 <li>实现</li>
 </ul>

@@ -18,7 +18,7 @@
     std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> v<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>如果我分配了两个My类的instance分别为a和b，当我进行 <code v-pre>b = std::move(a)</code> 操作时候，实际的情况如下图所示</p>
-<p><img src="@source/public/images/std_move.png" alt="https://www.bilibili.com/video/BV1vT411X7JA/?spm_id_from=333.337.search-card.all.click&amp;vd_source=f53099189814dd887f4ab25638e07406"></p>
+<p><img src="@source/.vuepress/public/images/std_move.png" alt="https://www.bilibili.com/video/BV1vT411X7JA/?spm_id_from=333.337.search-card.all.click&amp;vd_source=f53099189814dd887f4ab25638e07406"></p>
 <p>这个图可以说是一目了然了。move直接让b指向了a的内容，同时也将a的内容全都如同右值那样直接舍弃和移除。</p>
 <p>外显的效果就是将a中的所有内容都迁移到了b当中</p>
 <p>这不同于普通的copy，在copy完之后a还是有内容的，b只是保留得到了一个a的副本。</p>

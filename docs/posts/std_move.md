@@ -34,7 +34,7 @@ class My {
 
 如果我分配了两个My类的instance分别为a和b，当我进行 `b = std::move(a)` 操作时候，实际的情况如下图所示
 
-![https://www.bilibili.com/video/BV1vT411X7JA/?spm_id_from=333.337.search-card.all.click&vd_source=f53099189814dd887f4ab25638e07406](../public/images/std_move.png)
+![https://www.bilibili.com/video/BV1vT411X7JA/?spm_id_from=333.337.search-card.all.click&vd_source=f53099189814dd887f4ab25638e07406](../.vuepress/public/images/std_move.png)
 
 这个图可以说是一目了然了。move直接让b指向了a的内容，同时也将a的内容全都如同右值那样直接舍弃和移除。  
 

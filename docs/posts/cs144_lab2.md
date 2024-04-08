@@ -28,7 +28,7 @@ tag:
 3. stream index(Stream indices): 类型是uint64_t，其实就是我们之前reassembler里面的那个index
 
 (这个是CS144官方文档当中的解释)
-![3 numbers](../public/images//cs144_lab2_3nums.png)
+![3 numbers](../.vuepress/public/images/cs144_lab2_3nums.png)
 
 * 转换
 
@@ -42,7 +42,7 @@ tag:
 自然而然想出的办法就是**取模**运算
 
 (这个图是官方文档给出的这三者之间的相互转换关系)
-![3 number transition](../public/images//cs144_lab2_num_trans.png)
+![3 number transition](../.vuepress/public/images/cs144_lab2_num_trans.png)
 
 * 实现
 

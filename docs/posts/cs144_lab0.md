@@ -34,7 +34,7 @@ void get_URL( const string& host, const string& path )
 ```
 
 (或者说可能这个长得好看点)
-![webget](../public/images//cs144_lab0_webget.png)
+![webget](../.vuepress/public/images/cs144_lab0_webget.png)
 
 * 运行结果
 
@@ -170,7 +170,7 @@ uint64_t Reader::bytes_buffered() const
 }
 ```
 
-![byte stream](../public/images//cs144_lab0_bs.png)
+![byte stream](../.vuepress/public/images/cs144_lab0_bs.png)
 
 * 运行结果
 

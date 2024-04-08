@@ -14,7 +14,7 @@ export default defineUserConfig({
   description: '兰心幽谷，静芳天成',
 
   theme: defaultTheme({
-    logo: 'https://vuejs.press/images/hero.png',
+    logo: '/images/logo.png',
 
     navbar: [
       '/',

@@ -11,7 +11,7 @@ export default defineUserConfig({
   base: '/home/',
 
   title: 'Zari Tsu',
-  description: '一个普通的CSer',
+  description: '兰心幽谷，静芳天成',
 
   theme: defaultTheme({
     logo: 'https://vuejs.press/images/hero.png',
@@ -42,16 +42,13 @@ export default defineUserConfig({
   }),
   plugins: [
     mdEnhancePlugin({
-      // 启用代码块标签页
       codetabs: true,
-      // 启用自定义容器
       container: true,
     }),
     docsearchPlugin({
       locales: {
         '/': {
           placeholder: 'Search for article',
-          // 放置其他你需要的选项
         },
       }
     }),

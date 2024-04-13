@@ -1,3 +1,10 @@
+---
+category:
+  - 计算机组成原理
+tag:
+  - CSAPP
+---
+
 # Computer Science: A Programmer's Perspective
 
 > 这个是很久之前的关于csapp中计算机当中数的表示的笔记，图一乐即可

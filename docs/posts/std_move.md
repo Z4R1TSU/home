@@ -34,13 +34,15 @@ class My {
 
 如果我分配了两个My类的instance分别为a和b，当我进行 `b = std::move(a)` 操作时候，实际的情况如下图所示
 
+我尽量把图片出处都搞清楚。  
+这张来自B站UP[happyyang的百草园](https://space.bilibili.com/312883756)，很有实力的老哥。
 ![https://www.bilibili.com/video/BV1vT411X7JA/?spm_id_from=333.337.search-card.all.click&vd_source=f53099189814dd887f4ab25638e07406](../.vuepress/public/images/std_move.png)
 
 这个图可以说是一目了然了。move直接让b指向了a的内容，同时也将a的内容全都如同右值那样直接舍弃和移除。  
 
-外显的效果就是将a中的所有内容都迁移到了b当中  
+* 外显的效果就是将a中的所有内容都迁移到了b当中  
 
-这不同于普通的copy，在copy完之后a还是有内容的，b只是保留得到了一个a的副本。
+* 这不同于普通的copy，在copy完之后a还是有内容的，b只是保留得到了一个a的副本。
 
 **但是**，需要提一点的是，在`std::move`当中还有一些特性...  
 比如Small String Optimization(短字符串优化)，它会在你实际move之前先判断你要move的string长不长。如果长，那么我们就跟上面讲的一样，进行这种迁移，a本身的内容不会存在了；但如果这个string很短，我们就会直接对其进行拷贝。  

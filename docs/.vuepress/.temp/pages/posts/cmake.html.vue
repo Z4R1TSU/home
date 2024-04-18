@@ -1,4 +1,5 @@
 <template><div><h1 id="cmake" tabindex="-1"><a class="header-anchor" href="#cmake"><span>CMake</span></a></h1>
+<p>我的<a href="https://www.bilibili.com/video/BV1mJ4m1n7Z6/?spm_id_from=333.999.0.0&amp;vd_source=f53099189814dd887f4ab25638e07406" target="_blank" rel="noopener noreferrer">视频讲解<ExternalLinkIcon/></a></p>
 <p>最近在做C++的项目，而vscode我这里因为一些环境的问题，不太能搞，所以用了cmake这个工具来实现项目的编译运行</p>
 <h2 id="cmake的原理" tabindex="-1"><a class="header-anchor" href="#cmake的原理"><span>CMake的原理</span></a></h2>
 <p>这个图片很直观，我觉得很好。来自于<a href="https://subingwen.cn/cmake/CMake-primer/index.html" target="_blank" rel="noopener noreferrer">大丙<ExternalLinkIcon/></a>老哥的博客。
@@ -64,8 +65,53 @@ cmake <span class="token parameter variable">--build</span> <span class="token b
 ./test.exe
 <span class="token comment"># 若没有，则查看是否有Makefile，有则运行后再运行上一步</span>
 <span class="token function">make</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="文件分属不同文件夹下" tabindex="-1"><a class="header-anchor" href="#文件分属不同文件夹下"><span>文件分属不同文件夹下</span></a></h2>
-<p>// TODO</p>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><blockquote>
+<p>注意每次修改文件后，都需要重新<code v-pre>make</code>一遍更新</p>
+</blockquote>
+<h2 id="文件分属不同文件夹下" tabindex="-1"><a class="header-anchor" href="#文件分属不同文件夹下"><span>文件分属不同文件夹下</span></a></h2>
+<h3 id="文件结构-1" tabindex="-1"><a class="header-anchor" href="#文件结构-1"><span>文件结构</span></a></h3>
+<p>这是项目情况:</p>
+<p>head文件夹当中存储了头文件</p>
+<p>src文件夹是源文件</p>
+<p>test文件夹当中是测试文件</p>
+<p>我们的目标是运行test.cpp，使之成为一个可执行文件</p>
+<div class="language-bash line-numbers-mode" data-ext="sh" data-title="sh"><pre v-pre class="language-bash"><code>╰─❯ tree <span class="token builtin class-name">.</span>
+<span class="token builtin class-name">.</span>
+├── CMakeLists.txt
+├── <span class="token function">head</span>
+│   └── print_hello.h
+├── src
+│   └── print_hello.cpp
+└── <span class="token builtin class-name">test</span>
+    └── test.cpp
+
+<span class="token number">4</span> directories, <span class="token number">4</span> files
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="cmakelists-txt编写-1" tabindex="-1"><a class="header-anchor" href="#cmakelists-txt编写-1"><span>CMakeLists.txt编写</span></a></h3>
+<p>我们现在项目根目录下创建<code v-pre>CMakeLists.txt</code>文件</p>
+<div class="language-txt line-numbers-mode" data-ext="txt" data-title="txt"><pre v-pre class="language-txt"><code># 设置CMake的最低版本要求
+cmake_minimum_required(VERSION 3.10)
+
+# 设置项目名称
+project(MyProject)
+
+# 将头文件目录添加到编译器的头文件搜索路径
+include_directories(head)
+
+# 添加src目录作为子目录，src目录下应有CMakeLists.txt为源文件提供构建规则
+add_subdirectory(src)
+
+# 指定生成可执行文件的名字和相关的源文件
+add_executable(test_executable test/test.cpp)
+
+# 将可执行文件与源文件目录下生成的库进行链接
+target_link_libraries(test_executable source_lib)
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后在src目录下也创建一个<code v-pre>CMakeLists.txt</code>文件</p>
+<div class="language-txt line-numbers-mode" data-ext="txt" data-title="txt"><pre v-pre class="language-txt"><code># 添加库名称和源文件
+add_library(source_lib print_hello.cpp)
+
+# 为了确保库可以找到头文件，将头文件目录包含进来
+target_include_directories(source_lib PUBLIC ../head)
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>然后就跟可以进行cmake编译啦！</p>
 </div></template>
 
 

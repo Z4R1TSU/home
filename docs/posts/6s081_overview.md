@@ -1,8 +1,8 @@
 ---
 category:
-  - 6.S081
+  - OS
 tag:
-  - Operating System
+  - 6.S081
 ---
 
 # MIT 6.S081 操作系统 课程导读和源码浅析

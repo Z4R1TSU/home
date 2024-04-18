@@ -1,6 +1,6 @@
 ---
 category:
-  - 计算机组成原理
+  - Computer Formula
 tag:
   - CSAPP
 ---

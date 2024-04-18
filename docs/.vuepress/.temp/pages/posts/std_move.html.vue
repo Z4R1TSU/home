@@ -1,5 +1,5 @@
 <template><div><h1 id="std-move" tabindex="-1"><a class="header-anchor" href="#std-move"><span>std::move</span></a></h1>
-<h3 id="左值和右值" tabindex="-1"><a class="header-anchor" href="#左值和右值"><span>左值和右值</span></a></h3>
+<h2 id="左值和右值" tabindex="-1"><a class="header-anchor" href="#左值和右值"><span>左值和右值</span></a></h2>
 <ol>
 <li>左值: 赋值表达式结束后仍然存在的持久对象</li>
 <li>右值: 赋值表达式用完即丢的临时对象</li>
@@ -7,7 +7,7 @@
 <div class="language-cpp line-numbers-mode" data-ext="cpp" data-title="cpp"><pre v-pre class="language-cpp"><code>    <span class="token keyword">int</span> n<span class="token punctuation">;</span>
     n <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 这里n是左值，1是右值，n在赋值完还会继续存在，但是1就会消失</span>
     <span class="token number">1</span> <span class="token operator">=</span> n<span class="token punctuation">;</span> <span class="token comment">// 这里就是一个错误的语法，值从右传递到左，1在分配后就会被移除</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><br>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="std-move-1" tabindex="-1"><a class="header-anchor" href="#std-move-1"><span>std::move</span></a></h2>
 <blockquote>
 <p>划重点: std::move就是一个右值引用</p>
 </blockquote>
@@ -39,6 +39,32 @@
 <li>减少不必要的数据复制，使得性能开销一定程度的减小，从而达到提高性能的作用</li>
 </ol>
 <p><s>emmm可能我就只能列出这一项吧</s></p>
-</div></template>
+<h2 id="emplace" tabindex="-1"><a class="header-anchor" href="#emplace"><span>emplace</span></a></h2>
+<p>这个之前就想讲的，当然它肯定是得跟<code v-pre>push</code>一起讲</p>
+<p>来看一个场景</p>
+<div class="language-cpp line-numbers-mode" data-ext="cpp" data-title="cpp"><pre v-pre class="language-cpp"><code><span class="token keyword">struct</span> <span class="token class-name">human</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+  string name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 现在有一个城市，刚出生了两个婴儿a和b</span>
+  vector<span class="token operator">&lt;</span>human<span class="token operator">></span> city<span class="token punctuation">;</span>
+  city<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">human</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  city<span class="token punctuation">.</span><span class="token function">emplace_back</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>这里可以发现<code v-pre>push</code>进去的参数得是<code v-pre>vector</code>中的元素类型，而<code v-pre>emplace</code>的参数却只需要<code v-pre>vector</code>中元素构造所需要的参数。</p>
+<ul>
+<li>简单来说，<code v-pre>push</code>进行了拷贝，先显式构造一个元素，再将其拷贝到了这里的<code v-pre>city</code>当中，其内部的机理类似于这样(伪代码)</li>
+</ul>
+<div class="language-cpp line-numbers-mode" data-ext="cpp" data-title="cpp"><pre v-pre class="language-cpp"><code><span class="token comment">// constuct first</span>
+human a <span class="token operator">=</span> <span class="token function">human</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// add this a's copy to city</span>
+city <span class="token operator">+=</span> a<span class="token punctuation">.</span><span class="token function">copy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>而对于<code v-pre>emplace</code>来说，它自动会在<code v-pre>city</code>内部进行构造，相当于进行了一次<code v-pre>move</code>的右值引用</li>
+</ul>
+<div class="language-cpp line-numbers-mode" data-ext="cpp" data-title="cpp"><pre v-pre class="language-cpp"><code>city <span class="token operator">+=</span> std<span class="token double-colon punctuation">::</span><span class="token function">move</span><span class="token punctuation">(</span><span class="token function">human</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div></template>
 
 

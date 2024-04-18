@@ -8,6 +8,8 @@ tag:
 
 # CMake
 
+我的[视频讲解](https://www.bilibili.com/video/BV1mJ4m1n7Z6/?spm_id_from=333.999.0.0&vd_source=f53099189814dd887f4ab25638e07406)
+
 最近在做C++的项目，而vscode我这里因为一些环境的问题，不太能搞，所以用了cmake这个工具来实现项目的编译运行
 
 
@@ -94,6 +96,69 @@ cmake --build .
 make
 ```
 
+> 注意每次修改文件后，都需要重新`make`一遍更新
+
 
 ## 文件分属不同文件夹下
-// TODO
+
+### 文件结构 
+
+这是项目情况:   
+
+head文件夹当中存储了头文件
+
+src文件夹是源文件
+
+test文件夹当中是测试文件
+
+我们的目标是运行test.cpp，使之成为一个可执行文件
+
+```shell
+╰─❯ tree .
+.
+├── CMakeLists.txt
+├── head
+│   └── print_hello.h
+├── src
+│   └── print_hello.cpp
+└── test
+    └── test.cpp
+
+4 directories, 4 files
+```
+
+### CMakeLists.txt编写
+
+我们现在项目根目录下创建`CMakeLists.txt`文件
+
+```txt
+# 设置CMake的最低版本要求
+cmake_minimum_required(VERSION 3.10)
+
+# 设置项目名称
+project(MyProject)
+
+# 将头文件目录添加到编译器的头文件搜索路径
+include_directories(head)
+
+# 添加src目录作为子目录，src目录下应有CMakeLists.txt为源文件提供构建规则
+add_subdirectory(src)
+
+# 指定生成可执行文件的名字和相关的源文件
+add_executable(test_executable test/test.cpp)
+
+# 将可执行文件与源文件目录下生成的库进行链接
+target_link_libraries(test_executable source_lib)
+```
+
+然后在src目录下也创建一个`CMakeLists.txt`文件
+
+```txt
+# 添加库名称和源文件
+add_library(source_lib print_hello.cpp)
+
+# 为了确保库可以找到头文件，将头文件目录包含进来
+target_include_directories(source_lib PUBLIC ../head)
+```
+
+然后就跟可以进行cmake编译啦！

@@ -5,17 +5,17 @@ tag:
   - Cpp
 ---
 
-# 对象生存期与资源管理
+# RAII和智能指针
 
 > 引: c++不像Java或是Python拥有自动的回收处理机制
 
-这篇来讲讲cpp当中的智能指针，正如引子讲的那样，c或c类语言基本都没一种自动的回收机制，这也是出现什么野指针、空悬指针、内存泄漏等等tricky bug的原因。
+这篇来讲讲cpp当中的智能指针，正如引子讲的那样，c或c类语言基本都没一种自动的回收机制，这也是出现什么野指针、空悬指针、重复释放、内存泄漏等等tricky bug的原因。
 
 在c当中确确实实就只能通过很小心翼翼的设计才能避免这个问题，但是在c++当中引入的RAII可以一定程度的解决这个问题。
 
 先推荐一篇[Microsoft的官方文档](https://learn.microsoft.com/zh-cn/cpp/cpp/object-lifetime-and-resource-management-modern-cpp?view=msvc-170)，讲的非常好
 
-### 对象生存期
+## 对象生存期
 
 那么什么是一个对象的生存期呢？举两个例子你就懂了
 
@@ -32,3 +32,74 @@ tag:
         // do something
     }
     ```
+
+一个变量、函数、类的生存期从它被调用**构造函数**就开始了，而生存期到期的时候，应该调用**析构函数**来释放它所占用的资源。
+
+## RAII
+
+资源管理RAII全称Resource Acquisition Is Initialiaztion。其目的就是为了不用new delete来手动对资源进行创建和释放，而自动在对象离开生存期或者说作用域的时候，自动调用析构函数来释放资源。
+
+在使用裸指针时(类似C当中的使用`int *p = &i;`)，我们常常需要对其进行显式的`delete`来释放其资源。
+
+而智能指针就是C++当中对RAII的实现方案之一，它不需要我们进行显式的资源释放，也就是`delete`。也就是说，在对于使用智能指针的对象，在其生存期完的时候，会自动调用其**析构函数**，释放其资源。
+
+下面来介绍智能指针的三巨头
+1. `unique_ptr`：独享资源所有权
+2. `shared_ptr`：共享资源所有权
+3. `weak_ptr`：共享资源的观察者，配合`shared_ptr`使用
+
+## 智能指针
+
+智能指针被定义在这个库当中`#include <memory>`。
+
+### unique_ptr
+
+> 标准: c++-11
+
+在聊`unique_ptr`之前，我们先了解一下被它所上位替代的淘汰者`auto_ptr`。也就是说C++11标准是前者的“生日”，也是后者的“忌日”。
+
+* 直接说结论：`unique_ptr`相较于`auto_ptr`  
+  1. 禁用左值引用的拷贝构造
+  2. 禁用赋值重载函数
+
+* 这样的改变加强了智能指针的安全性，在对于被拷贝的原指针有一个恰当的处理，不至于出现指针空悬的情况。
+
+来看一组实例
+
+```cpp
+unique_ptr<int> p1{new int};      // 正确的
+unique_ptr<int> p2 = p1;          // 错误，禁用拷贝构造
+unique_ptr<int> p2{std::move(p1)};// 禁用左值引用拷贝构造，关我右值move迁移何事
+```
+
+<br>
+
+> C++-14当中添加了动态构建`make_unique()`
+
+```cpp
+auto ptr = std::make_unique<int>(200);
+threads_.emplace_back(ptr);             // 报错，就理解为unique_ptr在转移的时候，必须要用右值
+threads_.emplace_back(std::move(ptr));  // 正确
+```
+
+<br>
+
+> 加锁：`std::unique_lock`
+
+* `unique_lock`也是RAII的一部分。lock 对象本身不是锁，而是智能锁管理对象，它的构造函数和析构函数用来管理与其关联的 mutex 对象的锁定和解锁状态。当 lock 构造时，它自动获取与之关联的 mutex 的锁定权；当 lock 超出作用域并被销毁时，它自动释放这个 mutex。这就确保了即使在有异常抛出的情况下，锁也能被正确释放，避免死锁。
+
+以下是构建`unique_lock`的过程，我们不再需要显示的`lock`和`unlock`锁。`std::unique_lock` 在析构时自动释放锁。但它还允许你在作用域内显式地释放和重新获取锁。这增加了灵活性，例如用于条件变量等。
+
+```cpp
+#include <mutex>
+// 创建一个mutex互斥量类型的变量mtx
+std::mutex mtx;
+// 对mutex类型的mtx进行加锁，unique_lock类型的lck只是一个管理锁的东西
+std::unique_lock<std::mutex> lck(mtx);
+```
+
+Q: 为什么不直接用`std::mutex`里面内置的`lock`和`unlock`来进行锁的acquire和release？  
+A: 有可能死锁，不符合RAII规范。
+
+### shared_ptr
+

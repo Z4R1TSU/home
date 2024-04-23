@@ -20,7 +20,7 @@
 </ol>
 <p>一个变量、函数、类的生存期从它被调用<strong>构造函数</strong>就开始了，而生存期到期的时候，应该调用<strong>析构函数</strong>来释放它所占用的资源。</p>
 <h2 id="raii" tabindex="-1"><a class="header-anchor" href="#raii"><span>RAII</span></a></h2>
-<p>资源管理RAII全称Resource Acquisition Is Initialiaztion。其目的就是为了不用new delete来手动对资源进行创建和释放，而自动在对象离开生存期或者说作用域的时候，自动调用析构函数来释放资源。</p>
+<p><strong>资源管理 RAII</strong>全称<strong>Resource Acquisition Is Initialiaztion</strong>。其目的就是为了不用new delete来手动对资源进行创建和释放，而自动在对象离开生存期或者说作用域的时候，自动调用析构函数来释放资源。</p>
 <p>在使用裸指针时(类似C当中的使用<code v-pre>int *p = &amp;i;</code>)，我们常常需要对其进行显式的<code v-pre>delete</code>来释放其资源。</p>
 <p>而智能指针就是C++当中对RAII的实现方案之一，它不需要我们进行显式的资源释放，也就是<code v-pre>delete</code>。也就是说，在对于使用智能指针的对象，在其生存期完的时候，会自动调用其<strong>析构函数</strong>，释放其资源。</p>
 <p>下面来介绍智能指针的三巨头</p>
@@ -73,7 +73,7 @@ std<span class="token double-colon punctuation">::</span>mutex mtx<span class="t
 <span class="token comment">// 对mutex类型的mtx进行加锁，unique_lock类型的lck只是一个管理锁的东西</span>
 std<span class="token double-colon punctuation">::</span>unique_lock<span class="token operator">&lt;</span>std<span class="token double-colon punctuation">::</span>mutex<span class="token operator">></span> <span class="token function">lck</span><span class="token punctuation">(</span>mtx<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>Q: 为什么不直接用<code v-pre>std::mutex</code>里面内置的<code v-pre>lock</code>和<code v-pre>unlock</code>来进行锁的acquire和release？<br>
-A: 有可能死锁，不符合RAII规范。</p>
+A: 有可能死锁，不符合RAII规范。具体表现是，如果在<code v-pre>acquire lock</code>之后，但在<code v-pre>release lock</code>之前，也就是被锁的主体部分，程序出现了异常，那么这个资源就会一直被锁住而不会被释放。</p>
 <h3 id="shared-ptr" tabindex="-1"><a class="header-anchor" href="#shared-ptr"><span>shared_ptr</span></a></h3>
 </div></template>
 

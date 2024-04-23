@@ -37,7 +37,7 @@ tag:
 
 ## RAII
 
-资源管理RAII全称Resource Acquisition Is Initialiaztion。其目的就是为了不用new delete来手动对资源进行创建和释放，而自动在对象离开生存期或者说作用域的时候，自动调用析构函数来释放资源。
+**资源管理 RAII**全称**Resource Acquisition Is Initialiaztion**。其目的就是为了不用new delete来手动对资源进行创建和释放，而自动在对象离开生存期或者说作用域的时候，自动调用析构函数来释放资源。
 
 在使用裸指针时(类似C当中的使用`int *p = &i;`)，我们常常需要对其进行显式的`delete`来释放其资源。
 
@@ -99,7 +99,7 @@ std::unique_lock<std::mutex> lck(mtx);
 ```
 
 Q: 为什么不直接用`std::mutex`里面内置的`lock`和`unlock`来进行锁的acquire和release？  
-A: 有可能死锁，不符合RAII规范。
+A: 有可能死锁，不符合RAII规范。具体表现是，如果在`acquire lock`之后，但在`release lock`之前，也就是被锁的主体部分，程序出现了异常，那么这个资源就会一直被锁住而不会被释放。
 
 ### shared_ptr
 

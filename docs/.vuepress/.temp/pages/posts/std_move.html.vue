@@ -65,6 +65,27 @@ city <span class="token operator">+=</span> a<span class="token punctuation">.</
 <li>而对于<code v-pre>emplace</code>来说，它自动会在<code v-pre>city</code>内部进行构造，相当于进行了一次<code v-pre>move</code>的右值引用</li>
 </ul>
 <div class="language-cpp line-numbers-mode" data-ext="cpp" data-title="cpp"><pre v-pre class="language-cpp"><code>city <span class="token operator">+=</span> std<span class="token double-colon punctuation">::</span><span class="token function">move</span><span class="token punctuation">(</span><span class="token function">human</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div></template>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="深浅拷贝" tabindex="-1"><a class="header-anchor" href="#深浅拷贝"><span>深浅拷贝</span></a></h2>
+<ul>
+<li>
+<p>浅拷贝：<br>
+只拷贝指针地址，C++默认拷贝构造函数与赋值运算符重载都是浅拷贝；</p>
+<p>节省空间，但容易引发多次释放；</p>
+</li>
+</ul>
+<br>
+<ul>
+<li>深拷贝：
+重新分配堆內存，拷贝指针指向内容。
+浪费空间，但不会导致多次释放；</li>
+</ul>
+<br>
+<ul>
+<li>怎么兼有二者的优点？
+方案一：引用计数；
+方案二：C++新标准的移动语义；
+move 资源让渡</li>
+</ul>
+</div></template>
 
 

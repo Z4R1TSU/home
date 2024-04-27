@@ -47,6 +47,12 @@
 <li>
 <p>这样的改变加强了智能指针的安全性，在对于被拷贝的原指针有一个恰当的处理，不至于出现指针空悬的情况。</p>
 </li>
+<li>
+<p><code v-pre>unique_ptr</code>是专属所有权，所以<code v-pre>unique_ptr</code>管理的内存，<strong>只能被一个对象持有，不支持复制和赋值</strong>。</p>
+</li>
+<li>
+<p>移动语义：<code v-pre>unique_ptr</code>禁止了拷贝语义，但有时我们也需要能够转移所有权，于是提供了移动语义，即可以使用<code v-pre>std::move()</code>进行控制所有权的转移。</p>
+</li>
 </ul>
 <p>来看一组实例</p>
 <div class="language-cpp line-numbers-mode" data-ext="cpp" data-title="cpp"><pre v-pre class="language-cpp"><code>unique_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> p1<span class="token punctuation">{</span><span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">}</span><span class="token punctuation">;</span>      <span class="token comment">// 正确的</span>
@@ -74,7 +80,25 @@ std<span class="token double-colon punctuation">::</span>mutex mtx<span class="t
 std<span class="token double-colon punctuation">::</span>unique_lock<span class="token operator">&lt;</span>std<span class="token double-colon punctuation">::</span>mutex<span class="token operator">></span> <span class="token function">lck</span><span class="token punctuation">(</span>mtx<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>Q: 为什么不直接用<code v-pre>std::mutex</code>里面内置的<code v-pre>lock</code>和<code v-pre>unlock</code>来进行锁的acquire和release？<br>
 A: 有可能死锁，不符合RAII规范。具体表现是，如果在<code v-pre>acquire lock</code>之后，但在<code v-pre>release lock</code>之前，也就是被锁的主体部分，程序出现了异常，那么这个资源就会一直被锁住而不会被释放。</p>
-<h3 id="shared-ptr" tabindex="-1"><a class="header-anchor" href="#shared-ptr"><span>shared_ptr</span></a></h3>
+<h3 id="shared-ptr和weak-ptr" tabindex="-1"><a class="header-anchor" href="#shared-ptr和weak-ptr"><span>shared_ptr和weak_ptr</span></a></h3>
+<p>shared_ptr:</p>
+<ol>
+<li>
+<p><code v-pre>shared_ptr</code>通过一个引用计数共享一个对象(需要额外的开销)。</p>
+</li>
+<li>
+<p>当引用计数为0时，该对象没有被使用，可以进行析构。</p>
+</li>
+<li>
+<p>循环引用：引用计数会带来循环引用的问题。循环引用会导致堆里的内存无法正常回收，造成内存泄漏。</p>
+</li>
+</ol>
+<p>weak_ptr:</p>
+<ol>
+<li>weak_ptr 被设计为与 shared_ptr 共同工作，用一种观察者模式工作。</li>
+<li>作用是协助 shared_ptr 工作，可获得资源的观测权像旁观者那样观测资源的使用情况。<br>
+观察者意味着weak_ptr只对 shared_ptr 进行引用，而不改变其引用计数，当被观察的 shared_ptr失效后，相应的 weak_ptr也相应失效。</li>
+</ol>
 </div></template>
 
 

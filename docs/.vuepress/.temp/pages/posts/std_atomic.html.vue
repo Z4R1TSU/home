@@ -24,7 +24,20 @@ A：有的。它就是atomic，原子操作。</p>
 <p>基于其 <code v-pre>memory_order</code> 参数，原子操作可以针对同一个线程中其他原子操作的影响可见性建立排序要求。 因此，它会抑制违反排序要求的编译器优化。</p>
 </li>
 </ul>
+<br>
+<p>可能有人有疑问了，比如对于这个例子</p>
+<div class="language-cpp line-numbers-mode" data-ext="cpp" data-title="cpp"><pre v-pre class="language-cpp"><code>std<span class="token double-colon punctuation">::</span>atomic_int cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+cnt <span class="token operator">++</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>明明对于原子类型<code v-pre>cnt</code>的操作是原子的，为什么还要用<code v-pre>std::atomic</code>呢？</p>
+<p>因为虽然看上去<code v-pre>cnt ++</code>是一条单独的语句，不能再被分割，但是它在汇编和编译器层面上，涉及到多个操作，比如<code v-pre>cnt</code>的读取、写入、自增，这些操作也可能会引起竞争。</p>
+<p>因此，为了保证<code v-pre>cnt</code>的原子性，我们需要用<code v-pre>std::atomic</code>来包装它。</p>
 <h2 id="使用" tabindex="-1"><a class="header-anchor" href="#使用"><span>使用</span></a></h2>
+<blockquote>
+<p>原子操作是一种最小的不可分割的操作，它可以确保同一时间只有一个线程在访问某个资源。</p>
+</blockquote>
+<blockquote>
+<p>一般用于程序计数和其他计数器，信号量，事件，条件变量等。</p>
+</blockquote>
 <p>我在项目当中，用到的atomic基本都是对一些变量或者数据结构的原子性封装。</p>
 <ul>
 <li>在多线程环境中，对std::atomic对象的访问不会造成竞争冒险。利用std::atomic可实现数据结构的无锁设计。</li>
